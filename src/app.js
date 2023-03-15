@@ -8,6 +8,7 @@ const server = http.createServer(async (req, res) => {
     await endpoints[req.url][req.method](req, resCode, resObj);
     res.writeHead(resCode, { "Content-Type": "application/json" });
   } else {
+    resObj.msg = "Not Found";
     res.writeHead(404, { "Content-Type": "application/json" });
   }
   res.end(JSON.stringify(resObj));
